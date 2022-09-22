@@ -1,6 +1,7 @@
-import pygame
+from pygame import Surface
+from pygame.sprite import Sprite, Group
 
-class Block(pygame.sprite.Sprite):
+class Block(Sprite):
     """Represent an obstacle block.
 
     Attributes:
@@ -17,11 +18,11 @@ class Block(pygame.sprite.Sprite):
             pos (tuple[int, int]): The position of the block (x, y).
         """
         super().__init__()
-        self.image = pygame.Surface((side_length, side_length))
+        self.image = Surface((side_length, side_length))
         self.image.fill(color)
         self.rect = self.image.get_rect(topleft=pos)
 
-class Obstacle(pygame.sprite.Group):
+class Obstacle(Group):
     """Represents an obstacle.
 
     Attributes:

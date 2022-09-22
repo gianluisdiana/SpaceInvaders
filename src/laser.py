@@ -10,20 +10,24 @@ class Laser(pygame.sprite.Sprite):
             The measured rectangle of the laser.
         speed (int):
             The speed (in pixels) the laser will travel.
+        y_limit (int):
+            The maximum y position the laser can reach.
     """
 
-    def __init__(self, pos: tuple[int], speed: int):
+    def __init__(self, pos: tuple[int], speed: int, screen_height: int):
         """Initialize the laser with the image to display, position and speed.
 
         Args:
             pos (tuple[int, int]): The x and y position of the laser.
             speed (int): The speed (in pixels) the laser will travel.
+            screen_height (int): The height of the game screen.
         """
         super().__init__()
         self.image = pygame.Surface((4, 20))
         self.image.fill((255, 255, 255))
         self.rect = self.image.get_rect(center=pos)
         self.speed = speed
+        self.y_limit = screen_height
 
     def update(self) -> None:
         """Update the laser's position."""

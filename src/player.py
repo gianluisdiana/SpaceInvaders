@@ -32,3 +32,7 @@ class Player(pygame.sprite.Sprite):
             self.rect.x += self.speed
         elif keys[pygame.K_LEFT]:
             self.rect.x -= self.speed
+
+    def update(self) -> None:
+        """Update the player's position."""
+        self.get_input()

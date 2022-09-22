@@ -48,6 +48,8 @@ class SpaceInvaders:
         while True:
             self.get_input()
 
+            self.player.update()
+
             self.draw()
 
             pygame.display.flip()

@@ -140,6 +140,18 @@ class SpaceInvaders:
         if ExtraAlien.SPAWN_TIME <= 0:
             self.spawn_extra_alien()
 
+    def check_collitions(self) -> None:
+        """Check if there are any collitions between the sprites."""
+        # Player lasers
+        for laser in self.player.sprite.lasers:
+            aliens_hit = pygame.sprite.spritecollide(laser, self.aliens, True)
+            if aliens_hit:
+                laser.kill()
+            if pygame.sprite.spritecollide(laser, self.extra_alien, True):
+                laser.kill()
+            if pygame.sprite.spritecollide(laser, self.obstacles, True):
+                laser.kill()
+
     def draw(self) -> None:
         """Draw all the images in the screen."""
         self.screen.fill((30, 30, 30))
@@ -166,6 +178,7 @@ class SpaceInvaders:
 
             self.check_aliens_position()
             self.check_extra_alien_timer()
+            self.check_collitions()
 
             self.draw()
 

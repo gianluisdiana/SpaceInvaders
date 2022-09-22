@@ -1,5 +1,6 @@
 import pygame, sys
 from player import Player
+from obstacle import Obstacle
 
 class SpaceInvaders:
     """Class to represent a space invaders game.
@@ -20,6 +21,18 @@ class SpaceInvaders:
     OBSTACLE_AMOUNT = 4
     """The amount of obstacle the game will have."""
 
+    def create_multiple_obstacles(self, x_start: int, y_start: int, block_size: int) -> None:
+        """Create multiple obstacles in the screen.
+
+        Args:
+            x_start (int): The x position where the first obstacle will be created.
+            y_start (int): The y position where all the obstacles will be created.
+            block_size (int): The size of the blocks that will compose the obstacles.
+        """
+        offsets = [num * (self.screen.get_width() / SpaceInvaders.OBSTACLE_AMOUNT) for num in range(self.OBSTACLE_AMOUNT)]
+        for offset_x in offsets:
+            self.obstacles.add(Obstacle(block_size, (241, 79, 80), (x_start + offset_x, y_start)))
+
     def __init__(self, size: tuple[int], fps: int = 60):
         """Initialize all the requirements for the game.
 
@@ -38,6 +51,7 @@ class SpaceInvaders:
 
         # Obstacle setup
         self.obstacles = pygame.sprite.Group()
+        self.create_multiple_obstacles(size[0] / 15, 480, 6)
 
     def get_input(self) -> None:
         """Get the input from the player."""

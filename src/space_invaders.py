@@ -93,6 +93,7 @@ class SpaceInvaders:
         """Draw all the images in the screen."""
         self.screen.fill((30, 30, 30))
         self.player.draw(self.screen)
+        self.aliens.draw(self.screen)
         self.obstacles.draw(self.screen)
         self.player.sprite.lasers.draw(self.screen)
 

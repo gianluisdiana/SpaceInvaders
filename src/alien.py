@@ -63,3 +63,27 @@ class Alien(Sprite):
         """
         laser = Laser(self.rect.center, 6, y_limit)
         return laser
+
+class ExtraAlien(Alien):
+    """Represents the bonus extra alien.
+
+    Attributes:
+        image (pygame.Surface): The alien's image that will be displayed.
+        rect (pygame.Rect): The measured rectangle of the alien.
+        speed (int): The speed (in pixels) the alien will travel.
+    """
+
+    def __init__(self, side: str, screen_width: int):
+        """Initialize the alien with the image to display, position and points.
+
+        Args:
+            side (str): The side of the screen where the alien will appear.
+            screen_width (int): The width of the game screen.
+        """
+        if side == 'right':
+            x = screen_width + 50
+            self.speed = -3
+        else:
+            x = -50
+            self.speed = 3
+        super().__init__('extra', (x, 70))

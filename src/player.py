@@ -38,6 +38,11 @@ class Player(pygame.sprite.Sprite):
         self.laser_time = 0
         self.laser_cooldown = 600
 
+    def shoot_laser(self) -> None:
+        print('shoot')
+        self.laser_time = pygame.time.get_ticks()
+        self.ready_to_shoot = False
+
     def get_input(self) -> None:
         """Get the player's input and move the player."""
         keys = pygame.key.get_pressed()
@@ -46,6 +51,9 @@ class Player(pygame.sprite.Sprite):
             self.rect.x += self.speed
         elif keys[pygame.K_LEFT]:
             self.rect.x -= self.speed
+
+        if keys[pygame.K_SPACE] and self.ready_to_shoot:
+            self.shoot_laser()
 
     def check_border(self) -> None:
         """Keep the player on the screen if it founds a wall."""

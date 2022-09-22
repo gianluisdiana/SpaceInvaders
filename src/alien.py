@@ -31,3 +31,11 @@ class Alien(Sprite):
     def change_direction() -> None:
         """Change the direction the alien will move."""
         Alien.X_DIRECTION *= -1
+
+    def move_down(self, distance: int) -> None:
+        """Move the alien down.
+
+        Args:
+            distance (int): The distance the alien will move down.
+        """
+        self.rect.y += distance

@@ -99,6 +99,13 @@ class SpaceInvaders:
             for alien in self.aliens.sprites():
                 alien.move_down(distance)
 
+    def check_aliens_position(self) -> None:
+        """Check if the aliens have reached the screen border."""
+        all_aliens = self.aliens.sprites()
+        if any(alien.found_border(self.screen.get_width()) for alien in all_aliens):
+            Alien.change_direction()
+            self.move_aliens_down(10)
+
     def draw(self) -> None:
         """Draw all the images in the screen."""
         self.screen.fill((30, 30, 30))
@@ -114,6 +121,8 @@ class SpaceInvaders:
 
             self.player.update()
             self.aliens.update()
+
+            self.check_aliens_position()
 
             self.draw()
 

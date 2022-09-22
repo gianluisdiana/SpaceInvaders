@@ -31,6 +31,11 @@ class SpaceInvaders:
         player_sprite = Player((size[0] / 2, size[1]))
         self.player = pygame.sprite.GroupSingle(player_sprite)
 
+    def draw(self) -> None:
+        """Draw all the images in the screen."""
+        self.screen.fill((30, 30, 30))
+        self.player.draw(self.screen)
+
     def run(self) -> None:
         """Start the game loop."""
         while True:
@@ -39,8 +44,7 @@ class SpaceInvaders:
                     pygame.quit()
                     sys.exit()
 
-            self.screen.fill((30, 30, 30))
-            self.player.draw(self.screen)
+            self.draw()
 
             pygame.display.flip()
             self.clock.tick(self.fps)

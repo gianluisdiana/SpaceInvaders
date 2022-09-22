@@ -12,6 +12,8 @@ class Laser(pygame.sprite.Sprite):
             The speed (in pixels) the laser will travel.
         y_limit (int):
             The maximum y position the laser can reach.
+        sound (pygame.mixer.Sound):
+            The sound the laser make when shot.
     """
 
     def __init__(self, pos: tuple[int], speed: int, screen_height: int):
@@ -29,6 +31,9 @@ class Laser(pygame.sprite.Sprite):
         self.speed = speed
         self.y_limit = screen_height
 
+        self.sound = pygame.mixer.Sound('../audio/laser.wav')
+        self.sound.set_volume(.15)
+
     def is_off_screen(self) -> bool:
         """Check if the laser is off the screen.
 
@@ -41,3 +46,7 @@ class Laser(pygame.sprite.Sprite):
         """Update the laser's position."""
         self.rect.y += self.speed
         if self.is_off_screen(): self.kill()
+
+    def play(self) -> None:
+        """Play the laser's sound."""
+        self.sound.play()

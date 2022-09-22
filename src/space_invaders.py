@@ -129,6 +129,7 @@ class SpaceInvaders:
         self.aliens.draw(self.screen)
         self.obstacles.draw(self.screen)
         self.player.sprite.lasers.draw(self.screen)
+        self.alien_lasers.draw(self.screen)
 
     def run(self) -> None:
         """Start the game loop."""
@@ -137,6 +138,7 @@ class SpaceInvaders:
 
             self.player.update()
             self.aliens.update()
+            self.alien_lasers.update()
 
             self.check_aliens_position()
 

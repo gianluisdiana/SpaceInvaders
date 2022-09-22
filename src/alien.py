@@ -1,5 +1,6 @@
 from pygame import image
 from pygame.sprite import Sprite
+from laser import Laser
 
 class Alien(Sprite):
     """Represents an alien.
@@ -50,3 +51,15 @@ class Alien(Sprite):
             True if the alien found a border, False otherwise.
         """
         return self.rect.right >= screen_width or self.rect.left <= 0
+
+    def shoot(self, y_limit: int) -> Laser:
+        """Create a new laser and return it.
+
+        Args:
+            y_limit (int): The y limit the laser may travel.
+
+        Returns:
+            The laser shot by the alien.
+        """
+        laser = Laser(self.rect.center, 6, y_limit)
+        return laser

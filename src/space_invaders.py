@@ -26,6 +26,9 @@ class SpaceInvaders:
     OBSTACLE_AMOUNT = 4
     """The amount of obstacle the game will have."""
 
+    ALIENLASER_EVENT = pygame.USEREVENT + 1
+    """The event that will be triggered when an alien shoots a laser."""
+
     def create_multiple_obstacles(self, x_start: int, y_start: int, block_size: int) -> None:
         """Create multiple obstacles in the screen.
 
@@ -84,6 +87,7 @@ class SpaceInvaders:
         self.aliens = pygame.sprite.Group()
         self.create_alien_grid((6, 8))
         self.alien_lasers = pygame.sprite.Group()
+        pygame.time.set_timer(SpaceInvaders.ALIENLASER_EVENT, 1000)
 
     def random_alien_shoots(self) -> None:
         """Choose a random alien to shoot a laser"""
@@ -98,6 +102,8 @@ class SpaceInvaders:
             if event.type == pygame.QUIT:
                 pygame.quit()
                 sys.exit()
+            if event.type == SpaceInvaders.ALIENLASER_EVENT:
+                self.random_alien_shoots()
 
     def move_aliens_down(self, distance: int) -> None:
         """Move all the aliens down a certain distance.

@@ -29,6 +29,15 @@ class Laser(pygame.sprite.Sprite):
         self.speed = speed
         self.y_limit = screen_height
 
+    def is_off_screen(self) -> bool:
+        """Check if the laser is off the screen.
+
+        Returns:
+            bool: True if the laser is off the screen, False otherwise.
+        """
+        return self.rect.bottom <= 0 or self.rect.top >= self.y_limit
+
     def update(self) -> None:
         """Update the laser's position."""
         self.rect.y += self.speed
+        if self.is_off_screen(): self.kill()

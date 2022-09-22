@@ -152,8 +152,11 @@ class SpaceInvaders:
         for laser in self.player.sprite.lasers:
             aliens_hit = pygame.sprite.spritecollide(laser, self.aliens, True)
             if aliens_hit:
+                for alien in aliens_hit:
+                    self.score.increase(alien.points)
                 laser.kill()
             if pygame.sprite.spritecollide(laser, self.extra_alien, True):
+                self.score.increase(500)
                 laser.kill()
             if pygame.sprite.spritecollide(laser, self.obstacles, True):
                 laser.kill()

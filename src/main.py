@@ -1,5 +1,8 @@
+from space_invaders import SpaceInvaders
+
 def main():
-    pass
+    game = SpaceInvaders()
+    game.run()
 
 if __name__ == '__main__':
     main()

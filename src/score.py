@@ -34,3 +34,8 @@ class Score:
     def reset(self) -> None:
         """Reset the score."""
         self.value = 0
+
+    def draw(self, screen: Surface) -> None:
+        """Draw the score on the screen."""
+        score = self.font.render(f"Score: {self.value}", True, self.color)
+        screen.blit(score, self.pos)

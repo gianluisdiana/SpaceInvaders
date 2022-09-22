@@ -31,6 +31,16 @@ class Obstacle(pygame.sprite.Group):
         pos (tuple[int, int]): The position of the block (x, y).
     """
 
+    SHAPE = (
+    '  xxxxxxx',
+    ' xxxxxxxxx',
+    'xxxxxxxxxxx',
+    'xxxxxxxxxxx',
+    'xxxxxxxxxxx',
+    'xxx     xxx',
+    'xx       xx')
+    """The shape the obstacle has."""
+
     def __init__(self, block_size: int, color: tuple[int], pos: tuple[int]):
         """Initialize the obstacle with the blocks to display and its position.
 

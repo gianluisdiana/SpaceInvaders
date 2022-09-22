@@ -128,6 +128,12 @@ class SpaceInvaders:
             Alien.change_direction()
             self.move_aliens_down(10)
 
+    def spawn_extra_alien(self) -> None:
+        """Spawn an extra alien in the screen."""
+        side = random.choice(['left', 'right'])
+        self.extra_alien.add(ExtraAlien(side, self.screen.get_width()))
+        ExtraAlien.SPAWN_TIME = random.randint(400, 800)
+
     def draw(self) -> None:
         """Draw all the images in the screen."""
         self.screen.fill((30, 30, 30))

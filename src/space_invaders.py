@@ -168,6 +168,10 @@ class SpaceInvaders:
         # Alien lasers
         for laser in self.alien_lasers:
             if pygame.sprite.spritecollide(laser, self.player, False):
+                self.lives.decrease()
+                if self.lives.is_empty():
+                    pygame.quit()
+                    sys.exit()
                 laser.kill()
             if pygame.sprite.spritecollide(laser, self.obstacles, True):
                 laser.kill()

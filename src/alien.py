@@ -8,6 +8,7 @@ class Alien(Sprite):
     Attributes:
         image (pygame.Surface): The alien's image that will be displayed.
         rect (pygame.Rect): The measured rectangle of the alien.
+        points (int): The points the player will get if the alien is destroyed.
     """
 
     X_DIRECTION = 1
@@ -23,6 +24,13 @@ class Alien(Sprite):
         super().__init__()
         self.image = image.load(f'../images/aliens/{color}.png').convert_alpha()
         self.rect = self.image.get_rect(topleft=pos)
+
+        if color == 'red':
+            self.points = 100
+        elif color == 'green':
+            self.points = 200
+        else:
+            self.points = 300
 
     def update(self) -> None:
         """Move the alien horizontally."""
@@ -71,6 +79,7 @@ class ExtraAlien(Alien):
         image (pygame.Surface): The alien's image that will be displayed.
         rect (pygame.Rect): The measured rectangle of the alien.
         speed (int): The speed (in pixels) the alien will travel.
+        points (int): The points the player will get if the alien is destroyed.
     """
 
     SPAWN_TIME = 1
@@ -90,6 +99,7 @@ class ExtraAlien(Alien):
             x = -50
             self.speed = 3
         super().__init__('extra', (x, 70))
+        self.points = 500
 
     def update(self) -> None:
         """Move the alien horizontally."""

@@ -1,4 +1,4 @@
-![SpaceInvadersDeluxePoster](./graphics/poster.jpg)
+![SpaceInvadersDeluxePoster](./images/poster.jpg)
 
 # Space Invaders
 * author: Gian Luis Bolivar Diana

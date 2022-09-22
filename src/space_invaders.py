@@ -19,6 +19,8 @@ class SpaceInvaders:
             A group of Obstacles (groups of Blocks) of the game.
         aliens (pygame.sprite.Group):
             The aliens of the game.
+        alien_lasers (pygame.sprite.Group):
+            The lasers shot by the aliens.
     """
 
     OBSTACLE_AMOUNT = 4
@@ -81,6 +83,7 @@ class SpaceInvaders:
         # Alien setup
         self.aliens = pygame.sprite.Group()
         self.create_alien_grid((6, 8))
+        self.alien_lasers = pygame.sprite.Group()
 
     def get_input(self) -> None:
         """Get the input from the player."""

@@ -1,4 +1,5 @@
 import pygame
+from laser import Laser
 
 class Player(pygame.sprite.Sprite):
     """Represents the player's spaceship.
@@ -18,6 +19,8 @@ class Player(pygame.sprite.Sprite):
             The time (in milliseconds) the player needs to wait to recharge the laser.
         laser_time (int):
             The time (in milliseconds) the player last shot a laser.
+        lasers (pygame.sprite.Group):
+            The lasers shot by the player.
     """
 
     def __init__(self, pos: tuple[int], speed: int, screen_width: int):
@@ -37,9 +40,12 @@ class Player(pygame.sprite.Sprite):
         self.ready_to_shoot = True
         self.laser_time = 0
         self.laser_cooldown = 600
+        self.lasers = pygame.sprite.Group()
 
     def shoot_laser(self) -> None:
-        print('shoot')
+        """Create a new laser and add it to the lasers group."""
+        laser = Laser(self.rect.center)
+        self.lasers.add(laser)
         self.laser_time = pygame.time.get_ticks()
         self.ready_to_shoot = False
 

@@ -1,6 +1,7 @@
 import pygame, sys
 from player import Player
 from obstacle import Obstacle
+from alien import Alien
 
 class SpaceInvaders:
     """Class to represent a space invaders game.
@@ -35,6 +36,28 @@ class SpaceInvaders:
         for offset_x in offsets:
             self.obstacles.add(Obstacle(block_size, (241, 79, 80), (x_start + offset_x, y_start)))
 
+    def create_alien_grid(self, size: tuple[int], x_distance: int = 60, y_distance: int = 48) -> None:
+        """Create the grid of aliens.
+
+        Args:
+            size (tuple[int, int]): The size of the grid (num_rows, num_cols).
+            x_distance (int, optional): The distance between each alien in the x axis. Defaults to 60.
+            y_distance (int, optional): The distance between each alien in the y axis. Defaults to 48.
+        """
+        rows, cols = size
+        for row_index in range(rows):
+            for col_index in range(cols):
+                x = 70 + col_index * x_distance
+                y = 100 + row_index * y_distance
+
+                if row_index == 0:
+                    color = 'yellow'
+                elif 1 <= row_index <= 2:
+                    color = 'green'
+                else:
+                    color = 'red'
+                self.aliens.add(Alien(color, (x, y)))
+
     def __init__(self, size: tuple[int], fps: int = 60):
         """Initialize all the requirements for the game.
 
@@ -57,6 +80,7 @@ class SpaceInvaders:
 
         # Alien setup
         self.aliens = pygame.sprite.Group()
+        self.create_alien_grid((6, 8))
 
     def get_input(self) -> None:
         """Get the input from the player."""

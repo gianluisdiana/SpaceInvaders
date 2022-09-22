@@ -26,3 +26,8 @@ class Alien(Sprite):
     def update(self) -> None:
         """Move the alien horizontally."""
         self.rect.x += Alien.X_DIRECTION
+
+    @staticmethod
+    def change_direction() -> None:
+        """Change the direction the alien will move."""
+        Alien.X_DIRECTION *= -1

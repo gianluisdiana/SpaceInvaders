@@ -44,7 +44,7 @@ class Player(pygame.sprite.Sprite):
 
     def shoot_laser(self) -> None:
         """Create a new laser and add it to the lasers group."""
-        laser = Laser(self.rect.center)
+        laser = Laser(self.rect.center, -8)
         self.lasers.add(laser)
         self.laser_time = pygame.time.get_ticks()
         self.ready_to_shoot = False

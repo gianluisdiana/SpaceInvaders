@@ -89,6 +89,16 @@ class SpaceInvaders:
                 pygame.quit()
                 sys.exit()
 
+    def move_aliens_down(self, distance: int) -> None:
+        """Move all the aliens down a certain distance.
+
+        Args:
+            distance (int): The distance the aliens will move down.
+        """
+        if self.aliens:
+            for alien in self.aliens.sprites():
+                alien.move_down(distance)
+
     def draw(self) -> None:
         """Draw all the images in the screen."""
         self.screen.fill((30, 30, 30))

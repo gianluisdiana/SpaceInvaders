@@ -37,6 +37,14 @@ class Player(pygame.sprite.Sprite):
         elif keys[pygame.K_LEFT]:
             self.rect.x -= self.speed
 
+    def check_border(self) -> None:
+        """Keep the player on the screen if it founds a wall."""
+        if self.rect.right >= self.x_limit:
+            self.rect.right = self.x_limit
+        elif self.rect.left < 0:
+            self.rect.left = 0
+
     def update(self) -> None:
         """Update the player's position."""
         self.get_input()
+        self.check_border()

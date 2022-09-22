@@ -152,6 +152,20 @@ class SpaceInvaders:
             if pygame.sprite.spritecollide(laser, self.obstacles, True):
                 laser.kill()
 
+        # Alien lasers
+        for laser in self.alien_lasers:
+            if pygame.sprite.spritecollide(laser, self.player, False):
+                laser.kill()
+            if pygame.sprite.spritecollide(laser, self.obstacles, True):
+                laser.kill()
+
+        # Aliens
+        for alien in self.aliens:
+            pygame.sprite.spritecollide(alien, self.obstacles, True)
+            if pygame.sprite.spritecollide(alien, self.player, False):
+                alien.kill()
+                sys.exit()
+
     def draw(self) -> None:
         """Draw all the images in the screen."""
         self.screen.fill((30, 30, 30))

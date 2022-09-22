@@ -31,6 +31,8 @@ class SpaceInvaders:
             The lives of the player.
         background_music (pygame.mixer.Sound):
             The background music of the game.
+        explosion_sound (pygame.mixer.Sound):
+            The sound that will be played when an alien is destroyed.
     """
 
     OBSTACLE_AMOUNT = 4
@@ -111,6 +113,8 @@ class SpaceInvaders:
         self.background_music = pygame.mixer.Sound('../audio/background.wav')
         self.background_music.set_volume(.1)
         self.background_music.play(loops=-1)
+        self.explosion_sound = pygame.mixer.Sound('../audio/explosion.wav')
+        self.explosion_sound.set_volume(.2)
 
     def random_alien_shoots(self) -> None:
         """Choose a random alien to shoot a laser"""
@@ -166,9 +170,11 @@ class SpaceInvaders:
                 for alien in aliens_hit:
                     self.score.increase(alien.points)
                 laser.kill()
+                self.explosion_sound.play()
             if pygame.sprite.spritecollide(laser, self.extra_alien, True):
                 self.score.increase(500)
                 laser.kill()
+                self.explosion_sound.play()
             if pygame.sprite.spritecollide(laser, self.obstacles, True):
                 laser.kill()
 

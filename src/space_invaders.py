@@ -28,7 +28,7 @@ class SpaceInvaders:
         self.fps = fps
 
         # Player setup
-        player_sprite = Player((size[0] / 2, size[1]))
+        player_sprite = Player((size[0] / 2, size[1]), 5)
         self.player = pygame.sprite.GroupSingle(player_sprite)
 
     def get_input(self) -> None:

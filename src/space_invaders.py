@@ -2,6 +2,7 @@ import pygame, sys, random
 from player import Player
 from obstacle import Obstacle
 from alien import Alien, ExtraAlien
+from score import Score
 
 class SpaceInvaders:
     """Class to represent a space invaders game.
@@ -23,6 +24,8 @@ class SpaceInvaders:
             The lasers shot by the aliens.
         extra_alien (pygame.sprite.GroupSingle):
             An extra bonus alien.
+        score (Score):
+            The score the player currently has.
     """
 
     OBSTACLE_AMOUNT = 4
@@ -94,6 +97,9 @@ class SpaceInvaders:
         # Extra alien
         self.extra_alien = pygame.sprite.GroupSingle()
         ExtraAlien.SPAWN_TIME = random.randint(40, 80)
+
+        # Health and score setup
+        self.score = Score((10, -10), (255, 255, 255))
 
     def random_alien_shoots(self) -> None:
         """Choose a random alien to shoot a laser"""

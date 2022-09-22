@@ -29,6 +29,8 @@ class SpaceInvaders:
             The score the player currently has.
         lives (Lives):
             The lives of the player.
+        background_music (pygame.mixer.Sound):
+            The background music of the game.
     """
 
     OBSTACLE_AMOUNT = 4
@@ -104,6 +106,11 @@ class SpaceInvaders:
         # Health and score setup
         self.score = Score((10, -10), (255, 255, 255))
         self.lives = Lives(3, size[0])
+
+        # Audio setup
+        self.background_music = pygame.mixer.Sound('../audio/background.wav')
+        self.background_music.set_volume(.1)
+        self.background_music.play(loops=-1)
 
     def random_alien_shoots(self) -> None:
         """Choose a random alien to shoot a laser"""

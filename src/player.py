@@ -62,7 +62,15 @@ class Player(pygame.sprite.Sprite):
         elif self.rect.left < 0:
             self.rect.left = 0
 
+    def recharge(self) -> None:
+        """Recharge the player's laser."""
+        if not self.ready_to_shoot:
+            now = pygame.time.get_ticks()
+            if now - self.laser_time >= self.laser_cooldown:
+                self.ready_to_shoot = True
+
     def update(self) -> None:
-        """Update the player's position."""
+        """Update the player's position and recharge the laser."""
         self.get_input()
         self.check_border()
+        self.recharge()

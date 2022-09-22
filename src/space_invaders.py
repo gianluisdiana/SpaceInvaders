@@ -31,6 +31,13 @@ class SpaceInvaders:
         player_sprite = Player((size[0] / 2, size[1]))
         self.player = pygame.sprite.GroupSingle(player_sprite)
 
+    def get_input(self) -> None:
+        """Get the input from the player."""
+        for event in pygame.event.get():
+            if event.type == pygame.QUIT:
+                pygame.quit()
+                sys.exit()
+
     def draw(self) -> None:
         """Draw all the images in the screen."""
         self.screen.fill((30, 30, 30))
@@ -39,10 +46,7 @@ class SpaceInvaders:
     def run(self) -> None:
         """Start the game loop."""
         while True:
-            for event in pygame.event.get():
-                if event.type == pygame.QUIT:
-                    pygame.quit()
-                    sys.exit()
+            self.get_input()
 
             self.draw()
 

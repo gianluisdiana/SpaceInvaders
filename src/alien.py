@@ -39,3 +39,14 @@ class Alien(Sprite):
             distance (int): The distance the alien will move down.
         """
         self.rect.y += distance
+
+    def found_border(self, screen_width: int) -> bool:
+        """Check if the alien found a border.
+
+        Args:
+            screen_width (int): The width of the game screen.
+
+        Returns:
+            True if the alien found a border, False otherwise.
+        """
+        return self.rect.right >= screen_width or self.rect.left <= 0

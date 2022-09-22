@@ -1,4 +1,4 @@
-import pygame, sys
+import pygame, sys, random
 from player import Player
 from obstacle import Obstacle
 from alien import Alien
@@ -84,6 +84,13 @@ class SpaceInvaders:
         self.aliens = pygame.sprite.Group()
         self.create_alien_grid((6, 8))
         self.alien_lasers = pygame.sprite.Group()
+
+    def random_alien_shoots(self) -> None:
+        """Choose a random alien to shoot a laser"""
+        if not self.aliens.sprites(): return
+
+        random_alien = random.choice(self.aliens.sprites())
+        self.alien_lasers.add(random_alien.shoot(self.screen.get_height()))
 
     def get_input(self) -> None:
         """Get the input from the player."""

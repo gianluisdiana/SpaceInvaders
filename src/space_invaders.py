@@ -3,6 +3,7 @@ from player import Player
 from obstacle import Obstacle
 from alien import Alien, ExtraAlien
 from score import Score
+from lives import Lives
 
 class SpaceInvaders:
     """Class to represent a space invaders game.
@@ -26,6 +27,8 @@ class SpaceInvaders:
             An extra bonus alien.
         score (Score):
             The score the player currently has.
+        lives (Lives):
+            The lives of the player.
     """
 
     OBSTACLE_AMOUNT = 4
@@ -100,6 +103,7 @@ class SpaceInvaders:
 
         # Health and score setup
         self.score = Score((10, -10), (255, 255, 255))
+        self.lives = Lives(3, size[0])
 
     def random_alien_shoots(self) -> None:
         """Choose a random alien to shoot a laser"""

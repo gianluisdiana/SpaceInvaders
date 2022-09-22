@@ -9,6 +9,9 @@ class Alien(Sprite):
         rect (pygame.Rect): The measured rectangle of the alien.
     """
 
+    X_DIRECTION = 1
+    """The direction in the x axis the alien will move."""
+
     def __init__(self, color: str, pos: tuple[int]):
         """Initialize the alien with the image to display, position and points.
 

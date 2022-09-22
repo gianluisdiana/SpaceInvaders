@@ -90,3 +90,7 @@ class ExtraAlien(Alien):
             x = -50
             self.speed = 3
         super().__init__('extra', (x, 70))
+
+    def update(self) -> None:
+        """Move the alien horizontally."""
+        self.rect.x += self.speed

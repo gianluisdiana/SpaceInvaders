@@ -146,6 +146,7 @@ class SpaceInvaders:
         self.player.draw(self.screen)
         self.aliens.draw(self.screen)
         self.obstacles.draw(self.screen)
+        self.extra_alien.draw(self.screen)
         self.player.sprite.lasers.draw(self.screen)
         self.alien_lasers.draw(self.screen)
 
@@ -153,6 +154,7 @@ class SpaceInvaders:
         """Update all the sprites."""
         self.player.update()
         self.aliens.update()
+        self.extra_alien.update()
         self.alien_lasers.update()
 
     def run(self) -> None:

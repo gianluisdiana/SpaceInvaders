@@ -1,4 +1,4 @@
-import pygame
+import pygame, sys
 
 class SpaceInvaders:
     """Class to represent a space invaders game.
@@ -26,3 +26,13 @@ class SpaceInvaders:
 
     def run(self) -> None:
         """Start the game loop."""
+        while True:
+            for event in pygame.event.get():
+                if event.type == pygame.QUIT:
+                    pygame.quit()
+                    sys.exit()
+
+            self.screen.fill((30, 30, 30))
+
+            pygame.display.flip()
+            self.clock.tick(self.fps)

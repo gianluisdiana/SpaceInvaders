@@ -18,7 +18,7 @@ class Lives:
         """
         self.amount = amount
         self.image = pygame.image.load('../images/player.png').convert_alpha()
-        x = screen_width - self.image.get_size()[0] * (self.amount - 1) - (self.amount - 1) * 10
+        x = screen_width - self.image.get_width() - 10
         self.pos = (x, 10)
 
     def decrease(self) -> None:
@@ -36,5 +36,5 @@ class Lives:
             screen (pygame.Surface): The game screen.
         """
         for live in range(self.amount - 1):
-            x = self.pos[0] + live * (self.image.get_size()[0] + 10)
+            x = self.pos[0] - live * (self.image.get_width() + 10)
             screen.blit(self.image, (x, self.pos[1]))

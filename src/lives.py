@@ -28,3 +28,13 @@ class Lives:
     def is_empty(self) -> bool:
         """Return True if the player has no lives left."""
         return self.amount <= 0
+
+    def draw(self, screen: pygame.Surface) -> None:
+        """Draw the lives on the screen.
+
+        Args:
+            screen (pygame.Surface): The game screen.
+        """
+        for live in range(self.amount - 1):
+            x = self.pos[0] + live * (self.image.get_size()[0] + 10)
+            screen.blit(self.image, (x, self.pos[1]))

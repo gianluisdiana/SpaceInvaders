@@ -193,6 +193,7 @@ class SpaceInvaders:
         self.player.sprite.lasers.draw(self.screen)
         self.alien_lasers.draw(self.screen)
         self.score.draw(self.screen)
+        self.lives.draw(self.screen)
 
     def update_sprites(self) -> None:
         """Update all the sprites."""

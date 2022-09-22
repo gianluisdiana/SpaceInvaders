@@ -50,7 +50,7 @@ class Player(pygame.sprite.Sprite):
         self.ready_to_shoot = False
 
     def get_input(self) -> None:
-        """Get the player's input and move the player."""
+        """Get the player's input and move the player or shoots a laser."""
         keys = pygame.key.get_pressed()
 
         if keys[pygame.K_RIGHT]:

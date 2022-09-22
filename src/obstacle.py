@@ -21,7 +21,6 @@ class Block(pygame.sprite.Sprite):
         self.image.fill(color)
         self.rect = self.image.get_rect(topleft=pos)
 
-
 class Obstacle(pygame.sprite.Group):
     """Represents an obstacle.
 
@@ -53,3 +52,15 @@ class Obstacle(pygame.sprite.Group):
         self.block_size = block_size
         self.color = color
         self.pos = pos
+        self.create()
+
+    def create(self) -> None:
+        """Create the blocks that make up the obstacle."""
+        for row_index, row in enumerate(Obstacle.SHAPE):
+            for char_index, char in enumerate(row):
+                if char == ' ': continue
+
+                x = self.pos[0] + char_index * self.block_size
+                y = self.pos[1] + row_index * self.block_size
+                block = Block(self.block_size, self.color, (x, y))
+                self.add(block)

@@ -76,12 +76,11 @@ class ExtraAlien(Alien):
     SPAWN_TIME = 1
     """The spawn time left for the alien to appear."""
 
-    def __init__(self, side: str, spawn_time: int, screen_width: int):
+    def __init__(self, side: str, screen_width: int):
         """Initialize the alien with the image to display, position and points.
 
         Args:
             side (str): The side of the screen where the alien will appear.
-            spawn_time (int): The time left for the alien to appear.
             screen_width (int): The width of the game screen.
         """
         if side == 'right':
@@ -91,4 +90,3 @@ class ExtraAlien(Alien):
             x = -50
             self.speed = 3
         super().__init__('extra', (x, 70))
-        ExtraAlien.SPAWN_TIME = spawn_time

@@ -70,6 +70,7 @@ class Alien(Sprite):
             The laser shot by the alien.
         """
         laser = Laser(self.rect.center, 6, y_limit)
+        laser.play()
         return laser
 
 class ExtraAlien(Alien):

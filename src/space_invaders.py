@@ -103,6 +103,7 @@ class SpaceInvaders:
             self.get_input()
 
             self.player.update()
+            self.aliens.update()
 
             self.draw()
 

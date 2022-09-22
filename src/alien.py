@@ -22,3 +22,7 @@ class Alien(Sprite):
         super().__init__()
         self.image = image.load(f'../images/aliens/{color}.png').convert_alpha()
         self.rect = self.image.get_rect(topleft=pos)
+
+    def update(self) -> None:
+        """Move the alien horizontally."""
+        self.rect.x += Alien.X_DIRECTION

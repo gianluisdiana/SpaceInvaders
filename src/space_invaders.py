@@ -1,4 +1,5 @@
 import pygame, sys
+from player import Player
 
 class SpaceInvaders:
     """Class to represent a space invaders game.
@@ -10,6 +11,8 @@ class SpaceInvaders:
             The clock that will be used to control the game's FPS.
         fps (int):
             How many FPS the game will run at.
+        player (pygame.sprite.GroupSingle):
+            The player of the game.
     """
 
     def __init__(self, size: tuple[int], fps: int = 60):
@@ -24,6 +27,10 @@ class SpaceInvaders:
         self.clock = pygame.time.Clock()
         self.fps = fps
 
+        # Player setup
+        player_sprite = Player((size[0] / 2, size[1]))
+        self.player = pygame.sprite.GroupSingle(player_sprite)
+
     def run(self) -> None:
         """Start the game loop."""
         while True:
@@ -33,6 +40,7 @@ class SpaceInvaders:
                     sys.exit()
 
             self.screen.fill((30, 30, 30))
+            self.player.draw(self.screen)
 
             pygame.display.flip()
             self.clock.tick(self.fps)

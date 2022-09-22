@@ -131,14 +131,18 @@ class SpaceInvaders:
         self.player.sprite.lasers.draw(self.screen)
         self.alien_lasers.draw(self.screen)
 
+    def update_sprites(self) -> None:
+        """Update all the sprites."""
+        self.player.update()
+        self.aliens.update()
+        self.alien_lasers.update()
+
     def run(self) -> None:
         """Start the game loop."""
         while True:
             self.get_input()
 
-            self.player.update()
-            self.aliens.update()
-            self.alien_lasers.update()
+            self.update_sprites()
 
             self.check_aliens_position()
 

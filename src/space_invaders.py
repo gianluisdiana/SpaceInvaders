@@ -134,6 +134,12 @@ class SpaceInvaders:
         self.extra_alien.add(ExtraAlien(side, self.screen.get_width()))
         ExtraAlien.SPAWN_TIME = random.randint(400, 800)
 
+    def check_extra_alien_timer(self) -> None:
+        """Check if the extra alien should be spawned."""
+        ExtraAlien.SPAWN_TIME -= 1
+        if ExtraAlien.SPAWN_TIME <= 0:
+            self.spawn_extra_alien()
+
     def draw(self) -> None:
         """Draw all the images in the screen."""
         self.screen.fill((30, 30, 30))
@@ -157,6 +163,7 @@ class SpaceInvaders:
             self.update_sprites()
 
             self.check_aliens_position()
+            self.check_extra_alien_timer()
 
             self.draw()
 

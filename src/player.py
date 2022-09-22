@@ -12,6 +12,12 @@ class Player(pygame.sprite.Sprite):
             The speed (in pixels) the player will travel.
         x_limit (int):
             The maximum x position the player can reach.
+        ready_to_shoot (bool):
+            If the player is ready to shoot.
+        laser_cooldown (int):
+            The time (in milliseconds) the player needs to wait to recharge the laser.
+        laser_time (int):
+            The time (in milliseconds) the player last shot a laser.
     """
 
     def __init__(self, pos: tuple[int], speed: int, screen_width: int):
@@ -27,6 +33,10 @@ class Player(pygame.sprite.Sprite):
         self.rect = self.image.get_rect(midbottom = pos)
         self.speed = speed
         self.x_limit = screen_width
+
+        self.ready_to_shoot = True
+        self.laser_time = 0
+        self.laser_cooldown = 600
 
     def get_input(self) -> None:
         """Get the player's input and move the player."""

@@ -13,7 +13,12 @@ class SpaceInvaders:
             How many FPS the game will run at.
         player (pygame.sprite.GroupSingle):
             The player of the game.
+        obstacles (pygame.sprite.Group):
+            A group of Obstacles (groups of Blocks) of the game.
     """
+
+    OBSTACLE_AMOUNT = 4
+    """The amount of obstacle the game will have."""
 
     def __init__(self, size: tuple[int], fps: int = 60):
         """Initialize all the requirements for the game.
@@ -30,6 +35,9 @@ class SpaceInvaders:
         # Player setup
         player_sprite = Player((size[0] / 2, size[1]), 5, size[0])
         self.player = pygame.sprite.GroupSingle(player_sprite)
+
+        # Obstacle setup
+        self.obstacles = pygame.sprite.Group()
 
     def get_input(self) -> None:
         """Get the input from the player."""

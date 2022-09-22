@@ -24,3 +24,7 @@ class Laser(pygame.sprite.Sprite):
         self.image.fill((255, 255, 255))
         self.rect = self.image.get_rect(center=pos)
         self.speed = speed
+
+    def update(self) -> None:
+        """Update the laser's position."""
+        self.rect.y += self.speed

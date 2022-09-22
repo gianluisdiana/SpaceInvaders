@@ -80,3 +80,4 @@ class Player(pygame.sprite.Sprite):
         self.get_input()
         self.check_border()
         self.recharge()
+        self.lasers.update()

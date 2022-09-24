@@ -15,17 +15,19 @@ class Player(GroupSingle):
             The score the player currently has.
         lives (Lives):
             The lives of the player.
+        name_introduced (bool):
+            If the player has already introduced his name.
     """
 
-    def __init__(self, name: str, screen_size: tuple[int, int]):
+    def __init__(self, screen_size: tuple[int, int]):
         """Initialize the player.
 
         Args:
-            name (str): The name of the player.
             screen_size (tuple[int, int]): The size of the screen (width, height).
         """
         width, height = screen_size
-        self.name = name
+        self.name = ''
+        self.name_introduced = False
         self.score = Score((10, -10), (255, 255, 255))
         self.lives = Lives(3, width)
         super().__init__(Spaceship((width / 2, height), 5, width))

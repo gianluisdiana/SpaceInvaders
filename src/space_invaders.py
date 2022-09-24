@@ -82,7 +82,7 @@ class SpaceInvaders:
         self.fps = fps
 
         # Player setup
-        self.player = Player('Gian', size)
+        self.player = Player(size)
 
         # Obstacle setup
         self.obstacles = pygame.sprite.Group()
@@ -118,7 +118,7 @@ class SpaceInvaders:
             if event.type == pygame.QUIT:
                 pygame.quit()
                 sys.exit()
-            if event.type == SpaceInvaders.ALIENLASER_EVENT:
+            elif event.type == SpaceInvaders.ALIENLASER_EVENT:
                 self.random_alien_shoots()
 
     def move_aliens_down(self, distance: int) -> None:

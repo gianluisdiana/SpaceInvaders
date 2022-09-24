@@ -1,5 +1,6 @@
 import json
 from pygame.sprite import GroupSingle
+from pygame.font import Font
 from pygame import Surface
 from spaceship import Spaceship
 from score import Score
@@ -68,3 +69,13 @@ class Player(GroupSingle):
             file.seek(0)
             file.write(json.dumps(dct_score, indent=2))
             file.truncate()
+
+    def display_name(self, screen: Surface) -> None:
+        """Display the name of the player.
+
+        Args:
+            screen (pygame.Surface): The screen where the name will be displayed.
+        """
+        name_text = Font('./fonts/Pixeled.ttf', 20).render(self.name, True, (255, 255, 255))
+        name_rect = name_text.get_rect(center=(screen.get_width() / 2, screen.get_height() / 2))
+        screen.blit(name_text, name_rect)

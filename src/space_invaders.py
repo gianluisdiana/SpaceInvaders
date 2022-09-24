@@ -228,9 +228,7 @@ class SpaceInvaders:
 
             if not self.player.name_introduced:
                 self.screen.fill((30, 30, 30))
-                font = pygame.font.Font('./fonts/Pixeled.ttf', 20)
-                text_surface = font.render(self.player.name, True, (255, 255, 255))
-                self.screen.blit(text_surface, ((self.screen.get_width() - text_surface.get_width()) / 2, self.screen.get_height() / 2))
+                self.player.display_name(self.screen)
 
             else:
                 self.update_sprites()

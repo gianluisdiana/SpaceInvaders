@@ -1,7 +1,7 @@
 import pygame
 from laser import Laser
 
-class Player(pygame.sprite.Sprite):
+class Spaceship(pygame.sprite.Sprite):
     """Represents the player's spaceship.
 
     Attributes:

@@ -1,5 +1,5 @@
 import pygame, sys, random
-from player import Player
+from spaceship import Spaceship
 from obstacle import Obstacle
 from alien import Alien, ExtraAlien
 from score import Score
@@ -88,7 +88,7 @@ class SpaceInvaders:
         self.fps = fps
 
         # Player setup
-        player_sprite = Player((size[0] / 2, size[1]), 5, size[0])
+        player_sprite = Spaceship((size[0] / 2, size[1]), 5, size[0])
         self.player = pygame.sprite.GroupSingle(player_sprite)
 
         # Obstacle setup

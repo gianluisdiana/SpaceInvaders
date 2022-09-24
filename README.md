@@ -9,16 +9,27 @@
 * **Right arrow key** - Move the spaceship to the right
 * **Space bar** - Shoots
 
-## Directroy Structure
+## Set up
+The `main` file is located in the src folder, to start the program, execute the following command:
+```BASH
+py src/main.py
+```
+**IMPORTANT** to run the game you must have installed the Python interpreter and the PyGame module, if you don't,
+use this link to go to the official [Python website], and this one for the [PyGame module].
+
+## Directory Structure
 ```
   .
   ├── audio          # The audio played in the game
-  ├── src            # Game implementation
   ├── fonts          # The fonts used to display text
-  └── images         # All the images that will be drawed
+  ├── images         # All the images that will be drawed
+  └── src            # Game implementation
 ```
 
 ## References:
 * [PyGame documentation](https://www.pygame.org/docs/)
 * [Tutorial based](https://github.com/clear-code-projects/Space-invaders)
 * [Github repository](https://github.com/gianluisdiana/SpaceInvaders)
+
+[Python website]: <https://www.python.org/downloads/>
+[PyGame module]: <https://www.pygame.org/download.shtml>

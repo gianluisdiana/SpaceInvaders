@@ -92,7 +92,6 @@ class SpaceInvaders:
         self.aliens = pygame.sprite.Group()
         self.create_alien_grid((6, 8))
         self.alien_lasers = pygame.sprite.Group()
-        pygame.time.set_timer(SpaceInvaders.ALIENLASER_EVENT, 1000)
 
         # Extra alien
         self.extra_alien = pygame.sprite.GroupSingle()
@@ -120,6 +119,15 @@ class SpaceInvaders:
                 sys.exit()
             elif event.type == SpaceInvaders.ALIENLASER_EVENT:
                 self.random_alien_shoots()
+            elif event.type == pygame.KEYDOWN and not self.player.name_introduced:
+                if event.key == pygame.K_RETURN:
+                    self.player.name_introduced = True
+                    pygame.time.set_timer(SpaceInvaders.ALIENLASER_EVENT, 1000)
+                    continue
+                elif event.key == pygame.K_BACKSPACE:
+                    self.player.name = self.player.name[:-1]
+                    continue
+                self.player.name += event.unicode
 
     def move_aliens_down(self, distance: int) -> None:
         """Move all the aliens down a certain distance.
@@ -218,14 +226,21 @@ class SpaceInvaders:
         while True:
             self.get_input()
 
-            self.update_sprites()
+            if not self.player.name_introduced:
+                self.screen.fill((30, 30, 30))
+                font = pygame.font.Font('./fonts/Pixeled.ttf', 20)
+                text_surface = font.render(self.player.name, True, (255, 255, 255))
+                self.screen.blit(text_surface, ((self.screen.get_width() - text_surface.get_width()) / 2, self.screen.get_height() / 2))
 
-            self.check_aliens_position()
-            self.check_extra_alien_timer()
-            self.check_collitions()
+            else:
+                self.update_sprites()
 
-            self.draw()
-            self.victory_message()
+                self.check_aliens_position()
+                self.check_extra_alien_timer()
+                self.check_collitions()
+
+                self.draw()
+                self.victory_message()
 
             pygame.display.flip()
             self.clock.tick(self.fps)

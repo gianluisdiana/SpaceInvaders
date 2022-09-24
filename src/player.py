@@ -1,3 +1,4 @@
+import json
 from pygame.sprite import GroupSingle
 from pygame import Surface
 from spaceship import Spaceship
@@ -54,3 +55,14 @@ class Player(GroupSingle):
             points (int): The points to increase the score.
         """
         self.score.increase(points)
+
+    def save_score(self) -> None:
+        """Save the score of the player."""
+        with open('scores.json', 'r+') as file:
+            json_file = file.read()
+            dct_score = json.loads(json_file)
+            dct_score[self.name] = self.score.value
+
+            file.seek(0)
+            file.write(json.dumps(dct_score, indent=2))
+            file.truncate()

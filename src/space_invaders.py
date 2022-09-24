@@ -172,6 +172,7 @@ class SpaceInvaders:
             if pygame.sprite.spritecollide(laser, self.player, False):
                 self.player.lives.decrease()
                 if self.player.is_dead():
+                    self.player.save_score()
                     pygame.quit()
                     sys.exit()
                 laser.kill()
@@ -182,6 +183,7 @@ class SpaceInvaders:
         for alien in self.aliens:
             pygame.sprite.spritecollide(alien, self.obstacles, True)
             if pygame.sprite.spritecollide(alien, self.player, False):
+                self.player.save_score()
                 alien.kill()
                 sys.exit()
 
@@ -205,6 +207,7 @@ class SpaceInvaders:
     def victory_message(self) -> None:
         """Show a message when the player wins."""
         if not self.aliens.sprites():
+            self.player.save_score()
             font = pygame.font.Font('./fonts/Pixeled.ttf', 20)
             victory_text = font.render('You Won!', True, (255, 255, 255))
             victory_rect = victory_text.get_rect(center=(self.screen.get_width() / 2, self.screen.get_height() / 2))

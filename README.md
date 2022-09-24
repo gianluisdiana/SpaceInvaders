@@ -12,9 +12,9 @@
 ## Set up
 The `main` file is located in the src folder, to start the program, execute the following command:
 ```BASH
-py src/main.py
+python3 src/main.py
 ```
-**IMPORTANT** to run the game you must have installed the Python interpreter and the PyGame module, if you don't,
+**IMPORTANT**: To run the game you must have installed the Python interpreter and the PyGame module, if you don't,
 use this link to go to the official [Python website], and this one for the [PyGame module].
 
 ## Directory Structure
@@ -23,6 +23,7 @@ use this link to go to the official [Python website], and this one for the [PyGa
   ├── audio          # The audio played in the game
   ├── fonts          # The fonts used to display text
   ├── images         # All the images that will be drawed
+  │   └── aliens           # The images of the enemies
   └── src            # Game implementation
 ```
 

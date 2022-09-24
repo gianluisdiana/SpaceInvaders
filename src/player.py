@@ -1,4 +1,5 @@
 from pygame.sprite import GroupSingle
+from pygame import Surface
 from spaceship import Spaceship
 from score import Score
 from lives import Lives
@@ -27,3 +28,13 @@ class Player(GroupSingle):
         self.score = Score((10, -10), (255, 255, 255))
         self.lives = Lives(3, width)
         super().__init__(Spaceship((width / 2, height), 5, width))
+
+    def draw(self, screen: Surface) -> None:
+        """Draw the player on the screen.
+
+        Args:
+            screen (pygame.Surface): The screen where the player will be drawn.
+        """
+        super().draw(screen)
+        self.score.draw(screen)
+        self.lives.draw(screen)

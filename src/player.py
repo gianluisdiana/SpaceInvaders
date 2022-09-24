@@ -38,3 +38,19 @@ class Player(GroupSingle):
         super().draw(screen)
         self.score.draw(screen)
         self.lives.draw(screen)
+
+    def is_dead(self) -> bool:
+        """Check if the player is dead.
+
+        Returns:
+            bool: True if the player is dead, False otherwise.
+        """
+        return self.lives.is_empty()
+
+    def increase_score(self, points: int) -> None:
+        """Increase the score of the player.
+
+        Args:
+            points (int): The points to increase the score.
+        """
+        self.score.increase(points)

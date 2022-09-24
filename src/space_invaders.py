@@ -1,9 +1,6 @@
 import pygame, sys, random
-from spaceship import Spaceship
 from obstacle import Obstacle
 from alien import Alien, ExtraAlien
-from score import Score
-from lives import Lives
 from player import Player
 
 class SpaceInvaders:
@@ -26,10 +23,6 @@ class SpaceInvaders:
             The lasers shot by the aliens.
         extra_alien (pygame.sprite.GroupSingle):
             An extra bonus alien.
-        score (Score):
-            The score the player currently has.
-        lives (Lives):
-            The lives of the player.
         background_music (pygame.mixer.Sound):
             The background music of the game.
         explosion_sound (pygame.mixer.Sound):
@@ -164,11 +157,11 @@ class SpaceInvaders:
             aliens_hit = pygame.sprite.spritecollide(laser, self.aliens, True)
             if aliens_hit:
                 for alien in aliens_hit:
-                    self.player.score.increase(alien.points)
+                    self.player.increase_score(alien.points)
                 laser.kill()
                 self.explosion_sound.play()
             if pygame.sprite.spritecollide(laser, self.extra_alien, True):
-                self.player.score.increase(500)
+                self.player.increase_score(500)
                 laser.kill()
                 self.explosion_sound.play()
             if pygame.sprite.spritecollide(laser, self.obstacles, True):
@@ -178,7 +171,7 @@ class SpaceInvaders:
         for laser in self.alien_lasers:
             if pygame.sprite.spritecollide(laser, self.player, False):
                 self.player.lives.decrease()
-                if self.player.lives.is_empty():
+                if self.player.is_dead():
                     pygame.quit()
                     sys.exit()
                 laser.kill()

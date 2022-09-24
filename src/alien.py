@@ -22,7 +22,7 @@ class Alien(Sprite):
             pos (tuple[int, int]): The position of the alien (x, y).
         """
         super().__init__()
-        self.image = image.load(f'../images/aliens/{color}.png').convert_alpha()
+        self.image = image.load(f'./images/aliens/{color}.png').convert_alpha()
         self.rect = self.image.get_rect(topleft=pos)
 
         if color == 'red':

@@ -21,7 +21,7 @@ class Score:
         self.pos = pos
         self.color = color
         self.value = 0
-        self.font = Font('../fonts/Pixeled.ttf', 20)
+        self.font = Font('./fonts/Pixeled.ttf', 20)
 
     def increase(self, value: int = 1) -> None:
         """Increase the score.

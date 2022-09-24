@@ -31,7 +31,7 @@ class Laser(pygame.sprite.Sprite):
         self.speed = speed
         self.y_limit = screen_height
 
-        self.sound = pygame.mixer.Sound('../audio/laser.wav')
+        self.sound = pygame.mixer.Sound('./audio/laser.wav')
         self.sound.set_volume(.15)
 
     def is_off_screen(self) -> bool:

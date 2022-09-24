@@ -32,7 +32,7 @@ class Player(pygame.sprite.Sprite):
             screen_width (int): The width of the game screen.
         """
         super().__init__()
-        self.image = pygame.image.load('../images/player.png').convert_alpha()
+        self.image = pygame.image.load('./images/player.png').convert_alpha()
         self.rect = self.image.get_rect(midbottom = pos)
         self.speed = speed
         self.x_limit = screen_width

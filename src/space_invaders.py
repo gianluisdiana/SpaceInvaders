@@ -110,10 +110,10 @@ class SpaceInvaders:
         self.lives = Lives(3, size[0])
 
         # Audio setup
-        self.background_music = pygame.mixer.Sound('../audio/background.wav')
+        self.background_music = pygame.mixer.Sound('./audio/background.wav')
         self.background_music.set_volume(.1)
         self.background_music.play(loops=-1)
-        self.explosion_sound = pygame.mixer.Sound('../audio/explosion.wav')
+        self.explosion_sound = pygame.mixer.Sound('./audio/explosion.wav')
         self.explosion_sound.set_volume(.2)
 
     def random_alien_shoots(self) -> None:

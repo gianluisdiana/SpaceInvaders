@@ -17,7 +17,7 @@ class Lives:
             screen_width (int): The width of the game screen.
         """
         self.amount = amount
-        self.image = pygame.image.load('../images/player.png').convert_alpha()
+        self.image = pygame.image.load('./images/player.png').convert_alpha()
         x = screen_width - self.image.get_width() - 10
         self.pos = (x, 10)
 

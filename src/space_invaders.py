@@ -4,6 +4,7 @@ from obstacle import Obstacle
 from alien import Alien, ExtraAlien
 from score import Score
 from lives import Lives
+from player import Player
 
 class SpaceInvaders:
     """Class to represent a space invaders game.
@@ -15,7 +16,7 @@ class SpaceInvaders:
             The clock that will be used to control the game's FPS.
         fps (int):
             How many FPS the game will run at.
-        player (pygame.sprite.GroupSingle):
+        player (Player):
             The player of the game.
         obstacles (pygame.sprite.Group):
             A group of Obstacles (groups of Blocks) of the game.
@@ -88,8 +89,7 @@ class SpaceInvaders:
         self.fps = fps
 
         # Player setup
-        player_sprite = Spaceship((size[0] / 2, size[1]), 5, size[0])
-        self.player = pygame.sprite.GroupSingle(player_sprite)
+        self.player = Player('Gian', size)
 
         # Obstacle setup
         self.obstacles = pygame.sprite.Group()
@@ -104,10 +104,6 @@ class SpaceInvaders:
         # Extra alien
         self.extra_alien = pygame.sprite.GroupSingle()
         ExtraAlien.SPAWN_TIME = random.randint(40, 80)
-
-        # Health and score setup
-        self.score = Score((10, -10), (255, 255, 255))
-        self.lives = Lives(3, size[0])
 
         # Audio setup
         self.background_music = pygame.mixer.Sound('./audio/background.wav')
@@ -168,11 +164,11 @@ class SpaceInvaders:
             aliens_hit = pygame.sprite.spritecollide(laser, self.aliens, True)
             if aliens_hit:
                 for alien in aliens_hit:
-                    self.score.increase(alien.points)
+                    self.player.score.increase(alien.points)
                 laser.kill()
                 self.explosion_sound.play()
             if pygame.sprite.spritecollide(laser, self.extra_alien, True):
-                self.score.increase(500)
+                self.player.score.increase(500)
                 laser.kill()
                 self.explosion_sound.play()
             if pygame.sprite.spritecollide(laser, self.obstacles, True):
@@ -181,8 +177,8 @@ class SpaceInvaders:
         # Alien lasers
         for laser in self.alien_lasers:
             if pygame.sprite.spritecollide(laser, self.player, False):
-                self.lives.decrease()
-                if self.lives.is_empty():
+                self.player.lives.decrease()
+                if self.player.lives.is_empty():
                     pygame.quit()
                     sys.exit()
                 laser.kill()
@@ -205,8 +201,8 @@ class SpaceInvaders:
         self.extra_alien.draw(self.screen)
         self.player.sprite.lasers.draw(self.screen)
         self.alien_lasers.draw(self.screen)
-        self.score.draw(self.screen)
-        self.lives.draw(self.screen)
+        self.player.score.draw(self.screen)
+        self.player.lives.draw(self.screen)
 
     def update_sprites(self) -> None:
         """Update all the sprites."""

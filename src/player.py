@@ -18,6 +18,8 @@ class Player(GroupSingle):
             The lives of the player.
         name_introduced (bool):
             If the player has already introduced his name.
+        text_font (pygame.font.Font):
+            The font of the text used to ask the name and display it.
     """
 
     def __init__(self, screen_size: tuple[int, int]):
@@ -31,6 +33,7 @@ class Player(GroupSingle):
         self.name_introduced = False
         self.score = Score((10, -10), (255, 255, 255))
         self.lives = Lives(3, width)
+        self.text_font = Font('./fonts/Pixeled.ttf', 20)
         super().__init__(Spaceship((width / 2, height), 5, width))
 
     def draw(self, screen: Surface) -> None:
@@ -76,6 +79,17 @@ class Player(GroupSingle):
         Args:
             screen (pygame.Surface): The screen where the name will be displayed.
         """
-        name_text = Font('./fonts/Pixeled.ttf', 20).render(self.name, True, (255, 255, 255))
+        name_text = self.text_font.render(self.name, True, (255, 255, 255))
         name_rect = name_text.get_rect(center=(screen.get_width() / 2, screen.get_height() / 2))
         screen.blit(name_text, name_rect)
+
+    def ask_name(self, screen: Surface) -> None:
+        """Ask the name of the player.
+
+        Args:
+            screen (pygame.Surface): The screen where the name will be asked.
+        """
+        petition_text = self.text_font.render("Introduce your name:", True, (255, 255, 255))
+        petition_rect = petition_text.get_rect(center=(screen.get_width() / 2, screen.get_height() / 2 - 50))
+        screen.blit(petition_text, petition_rect)
+        self.display_name(screen)

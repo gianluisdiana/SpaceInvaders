@@ -228,7 +228,7 @@ class SpaceInvaders:
 
             if not self.player.name_introduced:
                 self.screen.fill((30, 30, 30))
-                self.player.display_name(self.screen)
+                self.player.ask_name(self.screen)
 
             else:
                 self.update_sprites()

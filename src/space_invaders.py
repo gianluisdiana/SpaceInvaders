@@ -202,6 +202,14 @@ class SpaceInvaders:
         self.extra_alien.update()
         self.alien_lasers.update()
 
+    def victory_message(self) -> None:
+        """Show a message when the player wins."""
+        if not self.aliens.sprites():
+            font = pygame.font.Font('./fonts/Pixeled.ttf', 20)
+            victory_text = font.render('You Won!', True, (255, 255, 255))
+            victory_rect = victory_text.get_rect(center=(self.screen.get_width() / 2, self.screen.get_height() / 2))
+            self.screen.blit(victory_text, victory_rect)
+
     def run(self) -> None:
         """Start the game loop."""
         while True:
@@ -214,6 +222,7 @@ class SpaceInvaders:
             self.check_collitions()
 
             self.draw()
+            self.victory_message()
 
             pygame.display.flip()
             self.clock.tick(self.fps)

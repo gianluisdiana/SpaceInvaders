@@ -1,12 +1,9 @@
-import json
-from pygame.sprite import GroupSingle
-from pygame.font import Font
-from pygame import Surface
+import pygame, json
 from spaceship import Spaceship
 from score import Score
 from lives import Lives
 
-class Player(GroupSingle):
+class Player(pygame.sprite.GroupSingle):
     """Represents the player of the game.
 
     Attributes:
@@ -33,10 +30,10 @@ class Player(GroupSingle):
         self.name_introduced = False
         self.score = Score((10, -10), (255, 255, 255))
         self.lives = Lives(3, width)
-        self.text_font = Font('./fonts/Pixeled.ttf', 20)
+        self.text_font = pygame.font.Font('./fonts/Pixeled.ttf', 20)
         super().__init__(Spaceship((width / 2, height), 5, width))
 
-    def draw(self, screen: Surface) -> None:
+    def draw(self, screen: pygame.Surface) -> None:
         """Draw the player on the screen.
 
         Args:
@@ -73,7 +70,7 @@ class Player(GroupSingle):
             file.write(json.dumps(dct_score, indent=2))
             file.truncate()
 
-    def display_name(self, screen: Surface) -> None:
+    def display_name(self, screen: pygame.Surface) -> None:
         """Display the name of the player.
 
         Args:
@@ -83,7 +80,7 @@ class Player(GroupSingle):
         name_rect = name_text.get_rect(center=(screen.get_width() / 2, screen.get_height() / 2))
         screen.blit(name_text, name_rect)
 
-    def ask_name(self, screen: Surface) -> None:
+    def ask_name(self, screen: pygame.Surface) -> None:
         """Ask the name of the player.
 
         Args:
@@ -93,3 +90,18 @@ class Player(GroupSingle):
         petition_rect = petition_text.get_rect(center=(screen.get_width() / 2, screen.get_height() / 2 - 50))
         screen.blit(petition_text, petition_rect)
         self.display_name(screen)
+
+    @staticmethod
+    def name_already_registered(name: str) -> bool:
+        """Check if the name of the player is registered.
+
+        Args:
+            name (str): The name of the player.
+
+        Returns:
+            bool: True if the name is registered, False otherwise.
+        """
+        with open('scores.json', 'r') as file:
+            json_file = file.read()
+            dct_score = json.loads(json_file)
+            return name in dct_score

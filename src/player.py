@@ -105,3 +105,20 @@ class Player(pygame.sprite.GroupSingle):
             json_file = file.read()
             dct_score = json.loads(json_file)
             return name in dct_score
+
+    def get_input(self, event: pygame.event.Event, alien_event: int) -> None:
+        """Get the input of the player.
+
+        Args:
+            event (pygame.event.Event): The event produced.
+            alien_event (int): The event that will be triggered when an alien shoots a laser
+        """
+        if not self.name_introduced:
+            if event.key == pygame.K_BACKSPACE:
+                self.name = self.name[:-1]
+            elif event.key == pygame.K_RETURN:
+                if not Player.name_already_registered(self.name):
+                    self.name_introduced = True
+                    pygame.time.set_timer(alien_event, 1000)
+            else:
+                self.name += event.unicode

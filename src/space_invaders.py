@@ -119,15 +119,8 @@ class SpaceInvaders:
                 sys.exit()
             elif event.type == SpaceInvaders.ALIENLASER_EVENT:
                 self.random_alien_shoots()
-            elif event.type == pygame.KEYDOWN and not self.player.name_introduced:
-                if event.key == pygame.K_RETURN:
-                    self.player.name_introduced = True
-                    pygame.time.set_timer(SpaceInvaders.ALIENLASER_EVENT, 1000)
-                    continue
-                elif event.key == pygame.K_BACKSPACE:
-                    self.player.name = self.player.name[:-1]
-                    continue
-                self.player.name += event.unicode
+            elif event.type == pygame.KEYDOWN:
+                self.player.get_input(event, SpaceInvaders.ALIENLASER_EVENT)
 
     def move_aliens_down(self, distance: int) -> None:
         """Move all the aliens down a certain distance.

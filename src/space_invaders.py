@@ -166,6 +166,7 @@ class SpaceInvaders:
                 laser.kill()
                 self.explosion_sound.play()
             if pygame.sprite.spritecollide(laser, self.obstacles, True):
+                self.player.reset_multiplier()
                 laser.kill()
 
         # Alien lasers

@@ -124,6 +124,10 @@ class Player(pygame.sprite.GroupSingle):
             else:
                 self.name += event.unicode
 
+    def reset_multiplier(self) -> None:
+        """Reset the score's multiplier."""
+        self.score.reset_multiplier()
+
     def update(self) -> None:
         """Update the player's ship and lasers."""
         for laser in self.sprite.lasers:

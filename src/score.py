@@ -13,6 +13,8 @@ class Score:
             The current score.
         font (pygame.font.Font):
             The font of the message displayed.
+        multiplier (float):
+            A certain amount to multiply the score when is increased.
     """
 
     def __init__(self, pos: tuple[int], color: tuple[int]) -> None:
@@ -25,6 +27,7 @@ class Score:
         self.pos = pos
         self.color = color
         self.value = 0
+        self.multiplier = 1
         self.font = Font('./fonts/Pixeled.ttf', 20)
 
     def increase(self, value: int = 1) -> None:
@@ -33,7 +36,7 @@ class Score:
         Args:
             value (int, optional): Indicates the value to increase the score. 1 by default.
         """
-        self.value += value
+        self.value += value * self.multiplier
 
     def reset(self) -> None:
         """Reset the score."""

@@ -50,3 +50,15 @@ class Score:
         """
         score = self.font.render(f"Score: {self.value}", True, self.color)
         screen.blit(score, self.pos)
+
+    def increase_multiplier(self, amount: int = .05) -> None:
+        """Increase the multiplier.
+
+        Args:
+            amount (int, optional): The amount to increase the multiplier. 0.5 by default.
+        """
+        self.multiplier += amount
+
+    def reset_multiplier(self) -> None:
+        """Reset the multiplier to 1."""
+        self.multiplier = 1

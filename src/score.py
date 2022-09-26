@@ -5,10 +5,14 @@ class Score:
     """Score class for the game.
 
     Attributes:
-        pos (tuple[int, int]): The x and y position of the score.
-        color (tuple[int, int, int]): The RGB color code.
-        value (int): The current score.
-        font (pygame.font.Font): The font of the message displayed.
+        pos (tuple[int, int]):
+            The x and y position of the score.
+        color (tuple[int, int, int]):
+            The RGB color code.
+        value (int):
+            The current score.
+        font (pygame.font.Font):
+            The font of the message displayed.
     """
 
     def __init__(self, pos: tuple[int], color: tuple[int]) -> None:
@@ -27,7 +31,7 @@ class Score:
         """Increase the score.
 
         Args:
-            value: An integer indicating the value to increase the score.
+            value (int, optional): Indicates the value to increase the score. 1 by default.
         """
         self.value += value
 
@@ -36,6 +40,10 @@ class Score:
         self.value = 0
 
     def draw(self, screen: Surface) -> None:
-        """Draw the score on the screen."""
+        """Draw the score on the screen.
+
+        Args:
+            screen (pygame.Surface): The screen where the score will be drawn.
+        """
         score = self.font.render(f"Score: {self.value}", True, self.color)
         screen.blit(score, self.pos)

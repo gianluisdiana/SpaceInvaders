@@ -132,5 +132,5 @@ class Player(pygame.sprite.GroupSingle):
         """Update the player's ship and lasers."""
         for laser in self.sprite.lasers:
             if laser.is_off_screen():
-                self.score.reset_multiplier()
+                self.reset_multiplier()
         super().update()

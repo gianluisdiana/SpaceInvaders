@@ -44,8 +44,8 @@ class Laser(pygame.sprite.Sprite):
 
     def update(self) -> None:
         """Update the laser's position."""
-        self.rect.y += self.speed
         if self.is_off_screen(): self.kill()
+        self.rect.y += self.speed
 
     def play(self) -> None:
         """Play the laser's sound."""

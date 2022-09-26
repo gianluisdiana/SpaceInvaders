@@ -58,6 +58,7 @@ class Player(pygame.sprite.GroupSingle):
             points (int): The points to increase the score.
         """
         self.score.increase(points)
+        self.score.increase_multiplier()
 
     def save_score(self) -> None:
         """Save the score of the player."""
@@ -122,3 +123,10 @@ class Player(pygame.sprite.GroupSingle):
                     pygame.time.set_timer(alien_event, 1000)
             else:
                 self.name += event.unicode
+
+    def update(self) -> None:
+        """Update the player's ship and lasers."""
+        for laser in self.sprite.lasers:
+            if laser.is_off_screen():
+                self.score.reset_multiplier()
+        super().update()

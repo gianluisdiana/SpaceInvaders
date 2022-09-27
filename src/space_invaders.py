@@ -111,6 +111,17 @@ class SpaceInvaders:
         self.obstacles.empty()
         self.extra_alien.empty()
 
+    def reset(self) -> None:
+        """Reset the game for a new round."""
+        self.remove_sprites()
+
+        self.player = Player(self.screen.get_size())
+        self.create_multiple_obstacles(self.screen.get_width() / 15, 480, 6)
+        self.create_alien_grid((6, 8))
+
+        ExtraAlien.SPAWN_TIME = random.randint(40, 80)
+        pygame.time.set_timer(SpaceInvaders.ALIENLASER_EVENT, 0)
+
     def random_alien_shoots(self) -> None:
         """Choose a random alien to shoot a laser"""
         if not self.aliens.sprites(): return
@@ -182,8 +193,7 @@ class SpaceInvaders:
                 self.player.lives.decrease()
                 if self.player.is_dead():
                     self.player.save_score()
-                    pygame.quit()
-                    sys.exit()
+                    self.reset()
                 laser.kill()
             if pygame.sprite.spritecollide(laser, self.obstacles, True):
                 laser.kill()
@@ -193,8 +203,7 @@ class SpaceInvaders:
             pygame.sprite.spritecollide(alien, self.obstacles, True)
             if pygame.sprite.spritecollide(alien, self.player, False):
                 self.player.save_score()
-                alien.kill()
-                sys.exit()
+                self.reset()
 
     def draw(self) -> None:
         """Draw all the images in the screen."""
@@ -217,11 +226,14 @@ class SpaceInvaders:
         """Show a message when the player wins."""
         if not self.aliens.sprites():
             self.player.save_score()
-
             font = pygame.font.Font('./fonts/Pixeled.ttf', 20)
             victory_text = font.render('You Won!', True, (255, 255, 255))
             victory_rect = victory_text.get_rect(center=(self.screen.get_width() / 2, self.screen.get_height() / 2))
             self.screen.blit(victory_text, victory_rect)
+
+            self.reset()
+            pygame.display.flip()
+            pygame.time.delay(5000)
 
     def run(self) -> None:
         """Start the game loop."""

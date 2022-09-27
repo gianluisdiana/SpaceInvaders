@@ -206,6 +206,7 @@ class SpaceInvaders:
         for laser in self.alien_lasers:
             if pygame.sprite.spritecollide(laser, self.player, False):
                 self.player.lives.decrease()
+                self.player.reset_multiplier()
                 if self.player.is_dead():
                     self.player.save_score()
                     self.game_over()

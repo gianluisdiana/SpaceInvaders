@@ -115,7 +115,7 @@ class SpaceInvaders:
         """Reset the game for a new round."""
         self.remove_sprites()
 
-        self.player = Player(self.screen.get_size())
+        self.player.reset()
         self.create_multiple_obstacles(self.screen.get_width() / 15, 480, 6)
         self.create_alien_grid((6, 8))
 

@@ -134,3 +134,10 @@ class Player(pygame.sprite.GroupSingle):
             if laser.is_off_screen():
                 self.reset_multiplier()
         super().update()
+
+    def reset(self) -> None:
+        """Reset the player."""
+        self.name = ''
+        self.name_introduced = False
+        self.score.reset()
+        self.lives.reset()

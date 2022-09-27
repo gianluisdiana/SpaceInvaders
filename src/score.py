@@ -41,6 +41,7 @@ class Score:
     def reset(self) -> None:
         """Reset the score."""
         self.value = 0
+        self.multiplier = 1
 
     def draw(self, screen: Surface) -> None:
         """Draw the score on the screen.

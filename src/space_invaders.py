@@ -169,6 +169,21 @@ class SpaceInvaders:
         if ExtraAlien.SPAWN_TIME <= 0:
             self.spawn_extra_alien()
 
+    def game_over(self) -> None:
+        """Show the game over screen."""
+        self.screen.fill((30, 30, 30))
+
+        game_over_font = pygame.font.Font('./fonts/Pixeled.ttf', 30)
+        game_over_text = game_over_font.render("GAME OVER", True, (255, 255, 255))
+        self.screen.blit(game_over_text, (200, 250))
+
+        pygame.mixer.Sound('audio/game-over.wav').play()
+        self.player.draw(self.screen)
+
+        self.reset()
+        pygame.display.flip()
+        pygame.time.delay(5000)
+
     def check_collitions(self) -> None:
         """Check if there are any collitions between the sprites."""
         # Player lasers
@@ -193,7 +208,7 @@ class SpaceInvaders:
                 self.player.lives.decrease()
                 if self.player.is_dead():
                     self.player.save_score()
-                    self.reset()
+                    self.game_over()
                 laser.kill()
             if pygame.sprite.spritecollide(laser, self.obstacles, True):
                 laser.kill()
@@ -203,7 +218,7 @@ class SpaceInvaders:
             pygame.sprite.spritecollide(alien, self.obstacles, True)
             if pygame.sprite.spritecollide(alien, self.player, False):
                 self.player.save_score()
-                self.reset()
+                self.game_over()
 
     def draw(self) -> None:
         """Draw all the images in the screen."""

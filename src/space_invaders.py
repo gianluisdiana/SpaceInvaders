@@ -104,6 +104,13 @@ class SpaceInvaders:
         self.explosion_sound = pygame.mixer.Sound('./audio/explosion.wav')
         self.explosion_sound.set_volume(.2)
 
+    def remove_sprites(self) -> None:
+        """Remove all the sprites from the game."""
+        self.aliens.empty()
+        self.alien_lasers.empty()
+        self.obstacles.empty()
+        self.extra_alien.empty()
+
     def random_alien_shoots(self) -> None:
         """Choose a random alien to shoot a laser"""
         if not self.aliens.sprites(): return
@@ -210,6 +217,7 @@ class SpaceInvaders:
         """Show a message when the player wins."""
         if not self.aliens.sprites():
             self.player.save_score()
+
             font = pygame.font.Font('./fonts/Pixeled.ttf', 20)
             victory_text = font.render('You Won!', True, (255, 255, 255))
             victory_rect = victory_text.get_rect(center=(self.screen.get_width() / 2, self.screen.get_height() / 2))

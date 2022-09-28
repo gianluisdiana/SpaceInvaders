@@ -5,13 +5,13 @@ class Lives:
 
     Attributes:
         amount (int):
-            The position of the images.
+            The number of lives the player has.
         inital_amount (int):
             The initial amount of lives the player has.
-            The number of lives the player has.
         image (pygame.Surface):
             The image that will be displayed.
         pos (tuple[int]):
+            The position of the images.
     """
 
     def __init__(self, amount: int, screen_width: int):

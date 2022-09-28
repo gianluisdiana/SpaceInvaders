@@ -49,8 +49,11 @@ class Score:
         Args:
             screen (pygame.Surface): The screen where the score will be drawn.
         """
-        score = self.font.render(f"Score: {self.value}", True, self.color)
-        screen.blit(score, self.pos)
+        score_text = self.font.render(f"Score: {self.value:.2f}", True, self.color)
+        screen.blit(score_text, self.pos)
+        if self.multiplier != 1:
+            multiplier_text = self.font.render(f"Multiplier: {self.multiplier:.2f}", True, self.color)
+            screen.blit(multiplier_text, (self.pos[0], self.pos[1] + 30))
 
     def increase_multiplier(self, amount: int = .05) -> None:
         """Increase the multiplier.

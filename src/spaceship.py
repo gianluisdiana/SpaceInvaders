@@ -23,16 +23,17 @@ class Spaceship(pygame.sprite.Sprite):
             The lasers shot by the player.
     """
 
-    def __init__(self, pos: tuple[int], speed: int, screen_width: int):
+    def __init__(self, pos: tuple[int], speed: int, screen_width: int, *, custom_path: str):
         """Initialize the player with the image to display, position, speed and the screen x-limit.
 
         Args:
             pos (tuple[int, int]): The position of the player (x, y).
             speed (int): The speed (in pixels) the player will travel.
             screen_width (int): The width of the game screen.
+            custom_path (str): The path of the custom assets.
         """
         super().__init__()
-        self.image = pygame.image.load('./images/player.png').convert_alpha()
+        self.image = pygame.image.load(custom_path + 'images/player.png').convert_alpha()
         self.rect = self.image.get_rect(midbottom = pos)
         self.speed = speed
         self.x_limit = screen_width

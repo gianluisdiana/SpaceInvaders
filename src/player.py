@@ -19,11 +19,12 @@ class Player(pygame.sprite.GroupSingle):
             The font of the text used to ask the name and display it.
     """
 
-    def __init__(self, screen_size: tuple[int, int]):
+    def __init__(self, screen_size: tuple[int, int], *, custom_path: str):
         """Initialize the player.
 
         Args:
             screen_size (tuple[int, int]): The size of the screen (width, height).
+            custom_path (str): The path of the custom assets.
         """
         width, height = screen_size
         self.name = ''
@@ -31,7 +32,7 @@ class Player(pygame.sprite.GroupSingle):
         self.score = Score((10, -10), (255, 255, 255))
         self.lives = Lives(3, width)
         self.text_font = pygame.font.Font('./fonts/Pixeled.ttf', 20)
-        super().__init__(Spaceship((width / 2, height), 5, width))
+        super().__init__(Spaceship((width / 2, height), 5, width, custom_path=custom_path))
 
     def draw(self, screen: pygame.Surface) -> None:
         """Draw the player on the screen.

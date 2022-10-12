@@ -1,3 +1,4 @@
+import sys
 from os import path
 from space_invaders import SpaceInvaders
 
@@ -22,7 +23,8 @@ def check_custom(argv: tuple[str]) -> str:
     return f'./custom/{argv[2]}/'
 
 def main():
-    game = SpaceInvaders((600, 600))
+    custom_path = check_custom(sys.argv)
+    game = SpaceInvaders((600, 600), custom_path=custom_path)
     game.run()
 
 if __name__ == '__main__':

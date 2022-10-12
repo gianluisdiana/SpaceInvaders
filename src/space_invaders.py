@@ -13,6 +13,8 @@ class SpaceInvaders:
             The clock that will be used to control the game's FPS.
         fps (int):
             How many FPS the game will run at.
+        custom_config_path (str):
+            The path to the custom assets.
         player (Player):
             The player of the game.
         obstacles (pygame.sprite.Group):
@@ -69,20 +71,22 @@ class SpaceInvaders:
                     color = 'red'
                 self.aliens.add(Alien(color, (x, y)))
 
-    def __init__(self, size: tuple[int], fps: int = 60):
+    def __init__(self, size: tuple[int], fps: int = 60, *, custom_path: str = './'):
         """Initialize all the requirements for the game.
 
         Args:
             size (tuple[int, int]): The size of the screen (width, height).
             fps (int, optional): The FPS of the game. Defaults to 60.
+            custom_path (str, optional): The path to the custom assets. Defaults to './'.
         """
         pygame.init()
         self.screen = pygame.display.set_mode(size)
         self.clock = pygame.time.Clock()
         self.fps = fps
+        self.custom_config_path = custom_path
 
         # Player setup
-        self.player = Player(size)
+        self.player = Player(size, custom_path=self.custom_config_path)
 
         # Obstacle setup
         self.obstacles = pygame.sprite.Group()

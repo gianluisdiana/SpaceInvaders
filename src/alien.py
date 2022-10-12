@@ -14,7 +14,7 @@ class Alien(Sprite):
     X_DIRECTION = 1
     """The direction in the x axis the alien will move."""
 
-    def __init__(self, color: str, pos: tuple[int]):
+    def __init__(self, color: str, pos: tuple[int], *, custom_path: str):
         """Initialize the alien with the image to display, position and points.
 
         Args:
@@ -22,7 +22,7 @@ class Alien(Sprite):
             pos (tuple[int, int]): The position of the alien (x, y).
         """
         super().__init__()
-        self.image = image.load(f'./images/aliens/{color}.png').convert_alpha()
+        self.image = image.load(f'{custom_path}images/aliens/{color}.png').convert_alpha()
         self.rect = self.image.get_rect(topleft=pos)
 
         if color == 'red':
@@ -86,7 +86,7 @@ class ExtraAlien(Alien):
     SPAWN_TIME = 1
     """The spawn time left for the alien to appear."""
 
-    def __init__(self, side: str, screen_width: int):
+    def __init__(self, side: str, screen_width: int, *, custom_path: str):
         """Initialize the alien with the image to display, position and points.
 
         Args:
@@ -99,7 +99,7 @@ class ExtraAlien(Alien):
         else:
             x = -50
             self.speed = 3
-        super().__init__('extra', (x, 70))
+        super().__init__('extra', (x, 70), custom_path=custom_path)
         self.points = 500
 
     def update(self) -> None:

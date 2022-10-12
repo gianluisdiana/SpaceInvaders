@@ -69,7 +69,7 @@ class SpaceInvaders:
                     color = 'green'
                 else:
                     color = 'red'
-                self.aliens.add(Alien(color, (x, y)))
+                self.aliens.add(Alien(color, (x, y), custom_path=self.custom_config_path))
 
     def __init__(self, size: tuple[int], fps: int = 60, *, custom_path: str = './'):
         """Initialize all the requirements for the game.
@@ -164,7 +164,7 @@ class SpaceInvaders:
     def spawn_extra_alien(self) -> None:
         """Spawn an extra alien in the screen."""
         side = random.choice(['left', 'right'])
-        self.extra_alien.add(ExtraAlien(side, self.screen.get_width()))
+        self.extra_alien.add(ExtraAlien(side, self.screen.get_width(), custom_path=self.custom_config_path))
         ExtraAlien.SPAWN_TIME = random.randint(400, 800)
 
     def check_extra_alien_timer(self) -> None:

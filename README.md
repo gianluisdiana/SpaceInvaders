@@ -17,11 +17,17 @@ python3 ./src/main.py
 **IMPORTANT**: To run the game you must have installed the Python interpreter and the PyGame module, if you don't,
 use this link to go to the official [Python website], and this one for the [PyGame module].
 
-## Using custom configuration
-If you want to use custom images, fonts or audio, create a folder inside the custom one with the name you like, then, execute the program with the `--custom` flag and the name of the folder you created.
-```BASH
-python3 ./src/main.py --custom my_custom_folder
-```
+## Aditional flags:
+  * ### Custom configuration
+    If you want to use custom images, create a folder inside the **custom** one with the name you like, then, execute the program with the `--custom` flag and the name of the folder you created.
+    ```BASH
+    python3 ./src/main.py --custom my_custom_folder
+    ```
+  * ### CRT effect
+    In order to display the CRT effect in the screen, we must execute our **main** file with the `--retro` flag activated.
+    ```BASH
+    python3 ./src/main.py --retro
+    ```
 
 ## Directory Structure
 ```

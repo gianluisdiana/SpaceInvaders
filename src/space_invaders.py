@@ -2,6 +2,7 @@ import pygame, sys, random
 from obstacle import Obstacle
 from alien import Alien, ExtraAlien
 from player import Player
+from crt import CRT
 
 class SpaceInvaders:
     """Class to represent a space invaders game.
@@ -15,6 +16,8 @@ class SpaceInvaders:
             How many FPS the game will run at.
         custom_config_path (str):
             The path to the custom assets.
+        crt (CRT):
+            The CRT effect that will be applied to the screen.
         player (Player):
             The player of the game.
         obstacles (pygame.sprite.Group):
@@ -71,19 +74,21 @@ class SpaceInvaders:
                     color = 'red'
                 self.aliens.add(Alien(color, (x, y), custom_path=self.custom_config_path))
 
-    def __init__(self, size: tuple[int], fps: int = 60, *, custom_path: str = './'):
+    def __init__(self, size: tuple[int], fps: int = 60, *, custom_path: str = './', retro: bool = False):
         """Initialize all the requirements for the game.
 
         Args:
             size (tuple[int, int]): The size of the screen (width, height).
             fps (int, optional): The FPS of the game. Defaults to 60.
             custom_path (str, optional): The path to the custom assets. Defaults to './'.
+            retro (bool): Whether the game should be in retro mode or not. Defaults to False.
         """
         pygame.init()
         self.screen = pygame.display.set_mode(size)
         self.clock = pygame.time.Clock()
         self.fps = fps
         self.custom_config_path = custom_path
+        self.crt = CRT(size) if retro else None
 
         # Player setup
         self.player = Player(size, custom_path=self.custom_config_path)
@@ -234,6 +239,7 @@ class SpaceInvaders:
         self.extra_alien.draw(self.screen)
         self.player.sprite.lasers.draw(self.screen)
         self.alien_lasers.draw(self.screen)
+        if (self.crt): self.crt.draw(self.screen)
 
     def update_sprites(self) -> None:
         """Update all the sprites."""

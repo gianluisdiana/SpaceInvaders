@@ -12,15 +12,23 @@
 ## Set up
 The `main` file is located in the src folder, to start the program, execute the following command:
 ```BASH
-python3 src/main.py
+python3 ./src/main.py
 ```
 **IMPORTANT**: To run the game you must have installed the Python interpreter and the PyGame module, if you don't,
 use this link to go to the official [Python website], and this one for the [PyGame module].
+
+## Using custom configuration
+If you want to use custom images, fonts or audio, create a folder inside the custom one with the name you like, then, execute the program with the `--custom` flag and the name of the folder you created.
+```BASH
+python3 ./src/main.py --custom my_custom_folder
+```
 
 ## Directory Structure
 ```
   .
   ├── audio          # The audio played in the game
+  ├── custom         # Custom configuration folders
+  │   └── example          # Contain the wished config
   ├── fonts          # The fonts used to display text
   ├── images         # All the images that will be drawed
   │   └── aliens           # The images of the enemies

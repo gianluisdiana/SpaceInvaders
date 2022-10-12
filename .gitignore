@@ -1,2 +1,5 @@
 # Bytecode cache files
 src/__pycache__/
+
+# File for custom configuration
+custom/*

@@ -14,13 +14,19 @@ def check_custom(argv: tuple[str]) -> str:
     if not path.exists('./custom'):
         raise FileNotFoundError('The folder for the custom configurations does not exist.')
 
-    if (len(argv) != 3 or argv[1] != "--custom"):
+    if (len(argv) < 3 or "--custom" not in argv):
         return './'
 
-    if not path.exists(f'./custom/{argv[2]}'):
-        raise FileNotFoundError(f'The custom folder "{argv[2]}" does not exist.')
+    index_custom_folder = argv.index("--custom") + 1
+    if (index_custom_folder >= len(argv)):
+        raise ValueError('The custom folder name is missing.')
 
-    return f'./custom/{argv[2]}/'
+    folder_name = argv[index_custom_folder]
+
+    if not path.exists(f'./custom/{folder_name}'):
+        raise FileNotFoundError(f'The custom folder "{folder_name}" does not exist.')
+
+    return f'./custom/{folder_name}/'
 
 def main():
     custom_path = check_custom(sys.argv)

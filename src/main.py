@@ -28,9 +28,21 @@ def check_custom(argv: tuple[str]) -> str:
 
     return f'./custom/{folder_name}/'
 
+def play_in_retro(argv: tuple[str]) -> bool:
+    """Checks if the user wants to play in the retro mode.
+
+    Args:
+        argv (tuple[str]): The command line arguments.
+
+    Returns:
+        bool: True if the user wants to play in the retro mode, False otherwise.
+    """
+    return "--retro" in argv
+
 def main():
     custom_path = check_custom(sys.argv)
-    game = SpaceInvaders((600, 600), custom_path=custom_path)
+    retro = play_in_retro(sys.argv)
+    game = SpaceInvaders((600, 600), custom_path=custom_path, retro=retro)
     game.run()
 
 if __name__ == '__main__':
